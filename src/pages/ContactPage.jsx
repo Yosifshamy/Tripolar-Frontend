@@ -14,12 +14,12 @@ import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import Button from "@/components/ui/Button";
 import Input from "@/components/ui/Input";
+import Loading from "@/components/ui/Loading";
 import toast from "react-hot-toast";
 import { Link } from "react-router-dom";
 
 const API_URL = import.meta.env.VITE_API_URL || "http://localhost:5000";
 const STATIC_URL = API_URL.replace(/\/api$/, "") || "http://localhost:5000";
-
 
 const ContactPage = () => {
   const [ushers, setUshers] = useState([]);
@@ -107,6 +107,13 @@ const ContactPage = () => {
       setLoading(false);
     }
   };
+  if (loading) {
+    return (
+      <div className="min-h-screen bg-primary-black flex items-center justify-center pt-16">
+        <Loading className="text-secondary-white" />
+      </div>
+    );
+  }
 
   return (
     <>
@@ -167,7 +174,9 @@ const ContactPage = () => {
                         <h3 className="text-sm font-medium text-secondary-white mb-1 uppercase tracking-wide">
                           Email
                         </h3>
-                        <p className="text-gray-400">info@tripolar-events.com</p>
+                        <p className="text-gray-400">
+                          info@tripolar-events.com
+                        </p>
                       </div>
                     </div>
 

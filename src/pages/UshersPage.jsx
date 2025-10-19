@@ -90,8 +90,13 @@ const UshersPage = () => {
     setImageErrors((prev) => ({ ...prev, [usherId]: true }));
   };
 
-  if (loading) return <Loading />;
-
+  if (loading) {
+    return (
+      <div className="min-h-screen bg-primary-black flex items-center justify-center pt-16">
+        <Loading className="text-secondary-white" />
+      </div>
+    );
+  }
   return (
     <div className="min-h-screen bg-primary-black">
       <Header />
