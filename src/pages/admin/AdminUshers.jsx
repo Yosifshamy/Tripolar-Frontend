@@ -15,6 +15,7 @@ import { toast } from "react-hot-toast";
 import Button from "@/components/ui/Button";
 import Card from "@/components/ui/Card";
 import Modal from "@/components/ui/Modal";
+import Loading from "@/components/ui/Loading";
 import { adminAPI } from "@/lib/api";
 import AdminLayout from "@/components/admin/AdminLayout";
 
@@ -188,12 +189,13 @@ const AdminUshers = () => {
 
   if (loading) {
     return (
-      <div className="flex items-center justify-center min-h-screen">
-        <div className="text-secondary-white">Loading...</div>
-      </div>
+      <AdminLayout>
+        <div className="flex items-center justify-center h-64">
+          <Loading size="lg" text="LOADING DASHBOARD..." />
+        </div>
+      </AdminLayout>
     );
   }
-
   return (
     <AdminLayout>
       <div className="p-8">
@@ -418,15 +420,15 @@ const AdminUshers = () => {
                     {selectedUsher.profile?.profileImage ? (
                       <div className="flex items-start gap-6">
                         <img
-                        src={`${STATIC_URL}${selectedUsher.profile.profileImage}`}
-                        alt={`${selectedUsher.name}'s profile`}
-                        className="w-32 h-32 rounded-full object-cover border border-gray-600"
-                        onError={(e) => {
-                          console.error("Image load failed:", e.target.src);
-                          e.target.style.display = "none";
-                          e.target.nextElementSibling.style.display = "block";
-                        }}
-                      />
+                          src={`${STATIC_URL}${selectedUsher.profile.profileImage}`}
+                          alt={`${selectedUsher.name}'s profile`}
+                          className="w-32 h-32 rounded-full object-cover border border-gray-600"
+                          onError={(e) => {
+                            console.error("Image load failed:", e.target.src);
+                            e.target.style.display = "none";
+                            e.target.nextElementSibling.style.display = "block";
+                          }}
+                        />
                         <div className="flex-1">
                           <p className="text-gray-400 text-sm mb-3">
                             Current profile picture. Click below to reject if it
