@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import { useState, useEffect } from 'react'
 import { motion } from 'framer-motion'
 import { 
   UsersIcon, 
@@ -143,10 +143,7 @@ const AdminDashboard = () => {
               </Card>
             </motion.div>
           ))}
-        </div>
-
-        {/* Main Content Grid */}
-        
+        </div>        
         {/* Bottom Stats Bar */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}

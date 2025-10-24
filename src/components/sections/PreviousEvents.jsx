@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import { motion } from 'framer-motion'
 import { CalendarIcon, MapPinIcon, UsersIcon, ChevronRightIcon } from '@heroicons/react/24/outline'
@@ -20,7 +20,6 @@ const PreviousEvents = () => {
     try {
       const response = await eventsAPI.getAll()
       if (response.data.success) {
-        // Show only first 3 events for homepage display
         setEvents(response.data.events.slice(0, 3))
       }
     } catch (error) {

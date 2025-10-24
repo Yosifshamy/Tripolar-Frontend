@@ -25,7 +25,6 @@ const LoginPage = () => {
   const onSubmit = async (data) => {
     const result = await login(data.email, data.password);
     if (result.success) {
-      // Redirect based on user role
       if (result.user.role === "admin") {
         navigate("/admin");
       } else {

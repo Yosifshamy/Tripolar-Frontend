@@ -31,7 +31,6 @@ api.interceptors.response.use(
   (response) => response,
   (error) => {
     if (error.response?.status === 401) {
-      // Token expired or invalid
       Cookies.remove('token')
       delete api.defaults.headers.common['Authorization']
       window.location.href = '/auth/login'

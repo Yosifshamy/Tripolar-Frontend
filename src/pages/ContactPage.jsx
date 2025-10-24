@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { useForm } from "react-hook-form";
 import {
@@ -12,8 +12,6 @@ import {
 import { ushersAPI, requestsAPI } from "@/lib/api";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
-import Button from "@/components/ui/Button";
-import Input from "@/components/ui/Input";
 import Loading from "@/components/ui/Loading";
 import toast from "react-hot-toast";
 import { Link } from "react-router-dom";
@@ -42,11 +40,10 @@ const ContactPage = () => {
     try {
       const response = await ushersAPI.getAll();
       if (response.data.success) {
-        // Only show visible ushers
         const visibleUshers = response.data.ushers.filter(
           (usher) => usher.isVisibleOnWebsite !== false
         );
-        setUshers(visibleUshers.slice(0, 8)); // Show first 8 ushers
+        setUshers(visibleUshers);
       }
     } catch (error) {
       console.error("Error fetching ushers:", error);
@@ -79,16 +76,16 @@ const ContactPage = () => {
     setLoading(true);
     try {
       const requestData = {
-        clientName: data.name, // Map 'name' to 'clientName'
-        clientEmail: data.email, // Map 'email' to 'clientEmail'
+        clientName: data.name,
+        clientEmail: data.email,
         clientPhone: data.phone || "",
-        eventDetails: data.message, // Map 'message' to 'eventDetails'
-        eventType: "Event Request", // Add this required field
+        eventDetails: data.message,
+        eventType: "Event Request",
         selectedUshers: selectedUshers,
         status: "pending",
       };
 
-      console.log("Sending request data:", requestData); // Debug log
+      console.log("Sending request data:", requestData);
 
       const response = await requestsAPI.create(requestData);
       if (response.data.success) {
@@ -101,7 +98,7 @@ const ContactPage = () => {
       }
     } catch (error) {
       console.error("Error submitting request:", error);
-      console.error("Error response:", error.response?.data); // More detailed error
+      console.error("Error response:", error.response?.data);
       toast.error(error.response?.data?.message || "Failed to submit request");
     } finally {
       setLoading(false);

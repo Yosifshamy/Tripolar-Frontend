@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { format } from "date-fns";
 import {
@@ -13,7 +13,6 @@ import { eventsAPI } from "@/lib/api";
 import Button from "@/components/ui/Button";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
-import Card from "@/components/ui/Card";
 import Loading from "@/components/ui/Loading";
 import { Link } from "react-router-dom";
 

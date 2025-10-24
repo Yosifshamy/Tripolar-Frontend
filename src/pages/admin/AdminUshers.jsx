@@ -1,20 +1,16 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import {
-  UsersIcon,
   MagnifyingGlassIcon,
   EyeIcon,
   EyeSlashIcon,
   PencilIcon,
   TrashIcon,
   XMarkIcon,
-  CheckIcon,
   PhotoIcon,
 } from "@heroicons/react/24/outline";
 import { toast } from "react-hot-toast";
-import Button from "@/components/ui/Button";
 import Card from "@/components/ui/Card";
-import Modal from "@/components/ui/Modal";
 import Loading from "@/components/ui/Loading";
 import { adminAPI } from "@/lib/api";
 import AdminLayout from "@/components/admin/AdminLayout";
@@ -33,14 +29,12 @@ const AdminUshers = () => {
   const [rejectionReason, setRejectionReason] = useState("");
   const [pagination, setPagination] = useState({});
 
-  // Filter ushers based on search term
   const filteredUshers = ushers.filter(
     (usher) =>
       usher.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
       usher.email.toLowerCase().includes(searchTerm.toLowerCase())
   );
 
-  // Count hidden ushers
   const hiddenCount = ushers.filter(
     (usher) => !usher.isVisibleOnWebsite
   ).length;
@@ -147,7 +141,6 @@ const AdminUshers = () => {
       });
 
       if (response.data.success) {
-        // Update local state
         setUshers((prev) =>
           prev.map((u) =>
             u._id === selectedUsher._id
@@ -162,8 +155,6 @@ const AdminUshers = () => {
               : u
           )
         );
-
-        // Update selected usher if modal is still open
         if (selectedUsher) {
           setSelectedUsher((prev) => ({
             ...prev,
@@ -429,19 +420,6 @@ const AdminUshers = () => {
                             e.target.nextElementSibling.style.display = "block";
                           }}
                         />
-                        <div className="flex-1">
-                          <p className="text-gray-400 text-sm mb-3">
-                            Current profile picture. Click below to reject if it
-                            doesn't meet professional standards.
-                          </p>
-                          <button
-                            type="button"
-                            onClick={() => setShowRejectImageModal(true)}
-                            className="px-6 py-3 bg-error-500 hover:bg-error-600 text-white transition-colors uppercase tracking-wider text-sm"
-                          >
-                            REJECT IMAGE
-                          </button>
-                        </div>
                       </div>
                     ) : (
                       <div className="border-2 border-dashed border-gray-600 rounded-lg p-8 text-center">

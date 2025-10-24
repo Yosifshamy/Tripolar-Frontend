@@ -64,13 +64,11 @@ const SignupPage = () => {
   const handleImageChange = (e) => {
     const file = e.target.files[0]
     if (file) {
-      // Validate file type
       if (!file.type.startsWith('image/')) {
         alert('Please select an image file')
         return
       }
 
-      // Validate file size (5MB max)
       if (file.size > 5 * 1024 * 1024) {
         alert('Image size must be less than 5MB')
         return
@@ -78,7 +76,6 @@ const SignupPage = () => {
 
       setProfileImage(file)
       
-      // Create preview
       const reader = new FileReader()
       reader.onloadend = () => {
         setImagePreview(reader.result)
@@ -97,7 +94,6 @@ const SignupPage = () => {
       return
     }
 
-    // Create FormData to send image with other data
     const formData = new FormData()
     formData.append('name', data.name)
     formData.append('email', data.email)

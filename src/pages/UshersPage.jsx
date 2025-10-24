@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef } from "react";
 import { motion } from "framer-motion";
 import {
   MagnifyingGlassIcon,
@@ -13,7 +13,6 @@ import Loading from "@/components/ui/Loading";
 import { ushersAPI } from "@/lib/api";
 
 const API_URL = import.meta.env.VITE_API_URL || "http://localhost:5000";
-// FIXED: Static URL without /api for uploads (handles cases where API_URL ends with /api)
 const STATIC_URL = API_URL.replace(/\/api$/, "") || "http://localhost:5000";
 
 const UshersPage = () => {
