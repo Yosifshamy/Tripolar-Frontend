@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import { useForm } from 'react-hook-form'
 import { motion } from 'framer-motion'
@@ -43,7 +43,7 @@ const SignupPage = () => {
       if (response.data.success && response.data.isValid) {
         setCodeValidation({
           isValid: true,
-          message: 'CODE IS VALID'
+          message: ''
         })
       } else {
         setCodeValidation({
@@ -223,20 +223,9 @@ const SignupPage = () => {
                     <div className="w-5 h-5 border-2 border-gray-400 border-t-secondary-white rounded-full animate-spin"></div>
                   </div>
                 )}
-                {!isValidatingCode && codeValidation.isValid === true && (
-                  <CheckCircleIcon className="absolute right-3 top-3 h-6 w-6 text-success-500" />
-                )}
-                {!isValidatingCode && codeValidation.isValid === false && (
-                  <XCircleIcon className="absolute right-3 top-3 h-6 w-6 text-error-500" />
-                )}
               </div>
               {errors.signupCode && (
                 <p className="mt-1 text-sm text-error-500">{errors.signupCode.message}</p>
-              )}
-              {codeValidation.message && (
-                <p className={`mt-1 text-sm ${codeValidation.isValid ? 'text-success-500' : 'text-error-500'}`}>
-                  {codeValidation.message}
-                </p>
               )}
             </div>
 

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import { ChevronLeftIcon, ChevronRightIcon } from "@heroicons/react/24/outline";
@@ -19,7 +19,6 @@ const OurUshers = () => {
     try {
       const response = await ushersAPI.getAll();
       if (response.data.success) {
-        // Show only first 6 ushers for homepage display
         setUshers(response.data.ushers.slice(0, 6));
       }
     } catch (error) {
@@ -30,7 +29,6 @@ const OurUshers = () => {
   };
 
   const API_URL = import.meta.env.VITE_API_URL || "http://localhost:5000";
-  // FIXED: Static URL without /api for uploads (handles cases where API_URL ends with /api)
   const STATIC_URL = API_URL.replace(/\/api$/, "") || "http://localhost:5000";
 
   const nextSlide = () => {
