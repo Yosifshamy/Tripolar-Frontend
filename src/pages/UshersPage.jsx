@@ -188,7 +188,7 @@ const UshersPage = () => {
                   <div className="relative w-full h-56 overflow-hidden bg-primary-dark-gray flex-shrink-0">
                     {usher.profile?.profileImage && !imageErrors[usher._id] ? (
                       <img
-                        src={`${API_URL}${usher.profile.profileImage}`}
+                        src={`${STATIC_URL}${usher.profile.profileImage}`}
                         alt={`${usher.name}'s profile`}
                         className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                         onError={(e) => {
